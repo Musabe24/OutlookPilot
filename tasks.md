@@ -20,8 +20,8 @@ Example first assignment: **B1**. Start from the repository root, create the Typ
 
 ## 2. Local process and CI
 
-- [ ] **B1 · Bootstrap TypeScript.** Pin a supported Node LTS, commit a lockfile and add build, type-check and test commands. From a clean checkout install locked dependencies and run all three commands.
-- [ ] **B2 · Wire CI.** Run those commands on pushes and PRs. Verify a failing test makes the job fail on the branch and that the final revision passes.
+- [x] **B1 · Bootstrap TypeScript.** Pin a supported Node LTS, commit a lockfile and add build, type-check and test commands. From a clean checkout install locked dependencies and run all three commands.
+- [x] **B2 · Wire CI.** Run those commands on pushes and PRs. Verify a failing test makes the job fail on the branch and that the final revision passes.
 - [ ] **B3 · Start MCP over stdio.** Register the CLI entry point and use the official SDK for `outlookpilot serve`. A process test starts the built binary, initializes MCP, lists tools and exits cleanly. Any diagnostics go to stderr.
 - [ ] **B4 · Connect the target client (operator; needs A1 and B3).** Provide a minimal example client configuration. Confirm that the real client launches the built entry point and lists tools.
 
