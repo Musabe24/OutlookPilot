@@ -1,0 +1,21 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { createInterface } from 'node:readline';
+
+test('serve initializes MCP and lists tools over stdio', async () => {
+  const child = spawn(process.execPath, ['dist/index.js', 'serve'], { stdio: ['pipe', 'pipe', 'pipe'] });
+  const lines = createInterface({ input: child.stdout });
+  const responses = lines[Symbol.asyncIterator]();
+  child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-03-26', capabilities: {}, clientInfo: { name: 'test', version: '1' } } }) + '\n');
+  const init = JSON.parse((await responses.next()).value);
+  assert.equal(init.id, 1);
+  assert.ok(init.result.serverInfo);
+  child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) + '\n');
+  child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/list', params: {} }) + '\n');
+  const list = JSON.parse((await responses.next()).value);
+  assert.deepEqual(list.result.tools, []);
+  child.stdin.end();
+  const [code] = await new Promise(resolve => child.on('exit', (...args) => resolve(args)));
+  assert.equal(code, 0);
+});
