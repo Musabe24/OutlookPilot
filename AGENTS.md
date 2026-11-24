@@ -12,3 +12,4 @@ Use test-driven development: write an automated test for the intended behavior b
 - Make small, meaningful commits with concise commit messages. Split work into coherent commits instead of combining unrelated changes in a large commit.
 - Follow clean code principles. Choose clear, descriptive names for files, variables, and functions. Keep functions focused and code easy to understand and maintain.
 - Open a pull request against `main` for review. Do not push changes directly to `main` or merge the pull request yourself.
+- After a pull request is merged, delete the working branches you created, both remotely and locally when present.
