@@ -12,6 +12,13 @@
     "test": "npm run build && node --test test/*.test.js"
   },
   "devDependencies": {
+    "@types/node": "^26.6.6",
     "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "bin": {
+    "outlookpilot": "dist/index.js"
   }
 }
