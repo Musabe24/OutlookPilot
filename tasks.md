@@ -35,7 +35,7 @@ Example first assignment: **B1**. Start from the repository root, create the Typ
 
 ## 4. Reading mail
 
-- [ ] **D1 · List folders.** Expose `list_folders` for root and child folders. Against a simulated Graph response, a parent ID returns the expected child ID and display name. Include Archive and Deleted Items as selectable destinations.
+- [x] **D1 · List folders.** Expose `list_folders` for root and child folders. Against a simulated Graph response, a parent ID returns the expected child ID and display name. Include Archive and Deleted Items as selectable destinations.
 - [ ] **D2 · Search one page.** Expose `search_mail` with documented supported queries and folder filters. Return at most 25 previews by default. Request immutable message IDs. Reject unsupported filter combinations with a useful error.
 - [ ] **D3 · Page results.** Add opaque cursors to search and folder listing. Test two distinct pages and reject an altered cursor or one reused with another account or query. Follow server-held Graph continuation URLs only.
 - [ ] **D4 · Read one message.** Expose `read_mail` by immutable ID. Return bounded text, a truncation indicator and a useful missing-message error. A fixture containing HTML, an external image and an instruction yields inert text with no external fetch or mailbox mutation.

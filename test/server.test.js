@@ -17,7 +17,7 @@ async function checkServer(entryPoint) {
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) + '\n');
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/list', params: {} }) + '\n');
   const list = JSON.parse((await responses.next()).value);
-  assert.deepEqual(list.result.tools, []);
+  assert.deepEqual(list.result.tools.map(tool => tool.name), ['list_folders']);
   child.stdin.end();
   const [code] = await new Promise(resolve => child.on('exit', (...args) => resolve(args)));
   assert.equal(code, 0);

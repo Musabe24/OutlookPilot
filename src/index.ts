@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { createServer } from './server.js';
 import { realpathSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
@@ -11,9 +10,8 @@ async function main(): Promise<void> {
     process.exitCode = 1;
     return;
   }
-  const server = new McpServer({ name: 'outlookpilot', version: '0.1.0' });
-  server.server.registerCapabilities({ tools: {} });
-  server.server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: [] }));
+  // Authentication and a live Graph client are connected in the authentication milestone.
+  const server = createServer({ list: async () => { throw new Error('Login required'); } });
   await server.connect(new StdioServerTransport());
 }
 
