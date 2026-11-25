@@ -2,6 +2,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { realpathSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 async function main(): Promise<void> {
@@ -16,7 +17,7 @@ async function main(): Promise<void> {
   await server.connect(new StdioServerTransport());
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href) {
   main().catch((error: unknown) => {
     console.error('Failed to start server:', error);
     process.exitCode = 1;
